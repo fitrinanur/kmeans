@@ -113,9 +113,16 @@ class ProsesController extends Controller
                     $val['data'][6]
                 ],
                 'name' => $val['data'][7],
+                'speed' => $val['data'][1],
                 'cluster' => $val['jarak_terdekat']['cluster']
             ];
         }
+
+        $infowindow = "
+        <html>
+        
+        </html>        
+        ";
 
         foreach($maps as $key_m => $map)
         {
@@ -134,7 +141,7 @@ class ProsesController extends Controller
             app('map')->add_marker($marker);
         }
        
-      
+        
 
         $map = app('map')->create_map();
 
