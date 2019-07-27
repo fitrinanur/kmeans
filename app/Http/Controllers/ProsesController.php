@@ -31,10 +31,12 @@ class ProsesController extends Controller
                         $row['speed'],$row['activity'],$row['lane'],
                         $row['first_latitude'],$row['first_longitude'],
                         $row['second_latitude'],$row['second_longitude'],
+                        $row['middle_latitude_1'],$row['middle_longitude_1'],
+                        $row['middle_latitude_2'],$row['middle_longitude_2'],
                         $row['name'],
                     ];
         }
-        
+//        dd($data);
         //table header
         $cluster = 3;
         $variable_x = 'Kecepatan';
@@ -102,34 +104,64 @@ class ProsesController extends Controller
         // set up the marker ready for positioning
         // // once we know the users location
         $maps = [];
+//        dd(end($hasil_iterasi));
         foreach(end($hasil_iterasi) as $val){
             $maps[] = [
                 'lat' => [
                     $val['data'][3],
-                    $val['data'][5]
+                    $val['data'][5],
+                    $val['data'][7],
+                    $val['data'][9],
                 ],
                 'long' => [
                     $val['data'][4],
-                    $val['data'][6]
+                    $val['data'][6],
+                    $val['data'][8],
+                    $val['data'][10],
                 ],
-                'name' => $val['data'][7],
+//                'middle_lat'=>[
+//                    $val['data'][7],
+//
+//                ],
+//                'middle_long'=>[
+//                    $val['data'][9],
+//                    $val['data'][10],
+//                ],
+                'name' => $val['data'][11],
                 'speed' => $val['data'][1],
+                'panjang' => $val['data'][0],
+                'lane' => $val['data'][2],
                 'cluster' => $val['jarak_terdekat']['cluster']
             ];
         }
 
-        $infowindow = "
-        <html>
-        
-        </html>        
-        ";
+
+
+
 
         foreach($maps as $key_m => $map)
         {
+            $polyline = array();
+            $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
+//                $map['lat'][2] .','. $map['long'][2],
+//                $map['lat'][3] .','. $map['long'][3],
+                $map['lat'][1] .','. $map['long'][1]
+            );
+            app('map')->add_polyline($polyline);
+//            $map = app('map')->create_map();
+            
+            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Lajur Jalan : ".$map['lane']."</p></div></div></html>";
+
             $marker = array();
             $marker['position'] = $map['lat'][0] .','. $map['long'][0];
-            $marker['infowindow_content'] = $map['name'];
-            $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_runner|bb|'.$key_m.'A|FFFFFF|000000';
+            $marker['infowindow_content'] = $infowindow;
+            if($map['cluster']==1){
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'A|FF0000|000000';
+            }elseif($map['cluster']==2){
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'A|ADDE63|000000';
+            }else{
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'A|FFFF00|000000';
+            }
             app('map')->add_marker($marker);
         }
         foreach($maps as $key_m => $map)
@@ -137,11 +169,17 @@ class ProsesController extends Controller
             $marker = array();
             $marker['position'] = $map['lat'][1] .','. $map['long'][1];
             $marker['onclick'] = 'alert("You just clicked me!!")';
-            $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'B|FFFFFF|000000';
+            if($map['cluster']==1){
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FF0000|000000';
+            }elseif($map['cluster']==2){
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|ADDE63|000000';
+            }else{
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FFFF00|000000';
+            }
             app('map')->add_marker($marker);
         }
-       
-        
+
+
 
         $map = app('map')->create_map();
 

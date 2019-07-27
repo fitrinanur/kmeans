@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #636b6f">
     <div class="main">
         @yield('content')
     </div>

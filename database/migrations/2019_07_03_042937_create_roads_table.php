@@ -21,6 +21,12 @@ class CreateRoadsTable extends Migration
             $table->double('lane');
             $table->string('first_latitude');
             $table->string('first_longitude');
+            $table->string('middle_latitude_1')->nullable();
+            $table->string('middle_longitude_1')->nullable();
+            $table->string('middle_latitude_2')->nullable();
+            $table->string('middle_longitude_2')->nullable();
+            $table->string('first_latitude');
+            $table->string('first_longitude');
             $table->string('second_latitude');
             $table->string('second_longitude');
             $table->double('long');

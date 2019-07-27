@@ -37,7 +37,7 @@
 //     </html>";
 // });
 Route::get('/', function () {
-    
+
     return view('welcome');
 });
 
@@ -47,3 +47,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('user', 'UserController');
 Route::resource('road', 'RoadController');
 Route::get('/proses', 'ProsesController@index')->name('proses.index');
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -13,11 +13,16 @@
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                color: white;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                background-color: #1f6fb2;
+                background: linear-gradient(#1f6fb2, white);
+                background: -webkit-linear-gradient(#1f6fb2, white);
+                background: -o-linear-gradient(#1f6fb2, white);
+                background: -moz-linear-gradient(#1f6fb2, white);
             }
 
             .full-height {
@@ -42,10 +47,11 @@
 
             .content {
                 text-align: center;
-            }
+                background-color: white;
+                color: #1b1e21;
+                padding: 10px;
+                border-radius: 5px;
 
-            .title {
-                font-size: 50px;
             }
 
             .links > a {
@@ -56,6 +62,10 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+
+            .presenter {
+                font-family:"Roboto Mono Light for Powerline Std";
             }
 
             .m-b-md {
@@ -70,7 +80,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a style="color: white" href="{{ route('login') }}">Login</a>
 
                         {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a> --}}
@@ -80,17 +90,30 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    "JUDUL"
-				</div>
-				<div class="card" style="border:#636b6f 1px solid;margin:10px;padding:30px;">
-					<p>Wahyu Utomo <br>
-						13.5.000xx <br>
-						STMIK SINAR NUSANTARA <br>
-						Surakarta
-					</p>
-					<p></p>
-				</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="logo">
+                                        <img src="{{asset('sinus.png')}}" alt="" style="width: 150px;height: 150px">
+                                    </div>
+                                    <div class="title">
+                                        <h3>"SISTEM PEMETAAN XXXX DENGAN ALGORITMA <i>K-Means Clustering</i> "</h3>
+                                    </div>
+                                    <hr/>
+                                    <div class="presenter">
+                                        <p>Wahyu Utomo <br>
+                                            13.5.000xx <br>
+                                            STMIK SINAR NUSANTARA <br>
+                                            Surakarta
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

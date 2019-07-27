@@ -27,6 +27,10 @@ class RoadsSeeder extends Seeder
             $road->lane = $data['lajur'];
             $road->first_latitude = $data['latitude_awal'];
             $road->first_longitude = $data['longitude_awal'];
+            $road->middle_latitude_1 = $data['latitude_tengah_1'];
+            $road->middle_longitude_1 = $data['longitude_tengah_1'];
+            $road->middle_latitude_2 = $data['latitude_tengah_2'];
+            $road->middle_longitude_2 = $data['longitude_tengah_2'];
             $road->second_latitude = $data['latitude_akhir'];
             $road->second_longitude = $data['longitude_akhir'];
             $road->long = $data['panjang'];
