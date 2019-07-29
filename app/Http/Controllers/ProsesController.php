@@ -104,29 +104,28 @@ class ProsesController extends Controller
         // set up the marker ready for positioning
         // // once we know the users location
         $maps = [];
-//        dd(end($hasil_iterasi));
+    //    dd(end($hasil_iterasi));
         foreach(end($hasil_iterasi) as $val){
             $maps[] = [
                 'lat' => [
                     $val['data'][3],
                     $val['data'][5],
-                    $val['data'][7],
-                    $val['data'][9],
+                   
                 ],
                 'long' => [
                     $val['data'][4],
                     $val['data'][6],
-                    $val['data'][8],
-                    $val['data'][10],
+                   
                 ],
-//                'middle_lat'=>[
-//                    $val['data'][7],
-//
-//                ],
-//                'middle_long'=>[
-//                    $val['data'][9],
-//                    $val['data'][10],
-//                ],
+               'middle_lat'=>[
+                $val['data'][7],
+                $val['data'][9],
+
+               ],
+               'middle_long'=>[
+                $val['data'][8],
+                $val['data'][10],
+               ],
                 'name' => $val['data'][11],
                 'speed' => $val['data'][1],
                 'panjang' => $val['data'][0],
@@ -138,17 +137,16 @@ class ProsesController extends Controller
 
 
 
-
+// dd($maps);
         foreach($maps as $key_m => $map)
         {
             $polyline = array();
             $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
-//                $map['lat'][2] .','. $map['long'][2],
-//                $map['lat'][3] .','. $map['long'][3],
+               $map['lat'][0] .','. $map['long'][0],
+               $map['lat'][1] .','. $map['long'][1],
                 $map['lat'][1] .','. $map['long'][1]
             );
             app('map')->add_polyline($polyline);
-//            $map = app('map')->create_map();
             
             $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Lajur Jalan : ".$map['lane']."</p></div></div></html>";
 

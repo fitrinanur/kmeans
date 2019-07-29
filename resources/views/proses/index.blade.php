@@ -132,7 +132,7 @@
             </div>
         </div>
         @endforeach
-        <div class="maps" style="height:120%;">
+        <div class="maps" style="height:190%;">
             {!!  $map['html']   !!}
         </div>
         
