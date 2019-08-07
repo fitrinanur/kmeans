@@ -59,15 +59,24 @@
                         value="{{ $road->speed }}">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputState">Aktifitas</label>
-                            <input type="text" class="form-control" id="inputEmail4" name="activity"
-                                placeholder="0.0215"
-                        value="{{ $road->activity }}">
+                        <label for="inputState">Aktifitas</label>
+                            <select id="inputState" class="form-control" name="activity">
+                                @foreach ($activities as $key => $activity)
+                                <option @if($road->activity == $key) selected @endif value="{{$road->activity}}">
+                                        {{ $activity }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">Lajur</label>
-                            <input type="text" class="form-control" id="inputEmail4" name="lane" placeholder="0.0215"
-                        value="{{$road->lane}}">
+                            <select id="inputState" class="form-control" name="lane">
+                                @foreach ($lanes as $key => $lane)
+                                <option @if($road->lane == $lane) selected @endif value="{{$road->lane}}">
+                                        {{ $key }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -83,6 +92,30 @@
                                 placeholder="110.831307"
                         value="{{$road->first_longitude}}"
                                 >
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="">Latitude Tengah 1</label>
+                            <input type="text" class="form-control" id="inputEmail4" name="middle_latitude_1"
+                                value="{{$road->middle_latitude_1}}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Longitude Tengah 1</label>
+                            <input type="text" class="form-control" id="inputEmail4" name="middle_longitude_1"
+                            value="{{$road->middle_longitude_1}}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="">Latitude Tengah 2</label>
+                            <input type="text" class="form-control" id="inputEmail4" name="middle_latitude_2"
+                            value="{{$road->middle_latitude_2}}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Longitude Tengah 2</label>
+                            <input type="text" class="form-control" id="inputEmail4" name="middle_longitude_2"
+                            value="{{$road->middle_longitude_2}}">
                         </div>
                     </div>
                     <div class="form-row">

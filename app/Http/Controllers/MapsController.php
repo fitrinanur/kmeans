@@ -4,14 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Road;
-
-class ProsesController extends Controller
+class MapsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $data = [];
@@ -28,12 +23,12 @@ class ProsesController extends Controller
         $data = [];
         foreach($roads as $row){
             $data[]=[
-                        $row['speed'],$row['activity'],$row['lane'],
+                        $row['long'],$row['activity'],$row['lane'],
                         $row['first_latitude'],$row['first_longitude'],
                         $row['second_latitude'],$row['second_longitude'],
                         $row['middle_latitude_1'],$row['middle_longitude_1'],
                         $row['middle_latitude_2'],$row['middle_longitude_2'],
-                        $row['name'],
+                        $row['name'], $row['type'],
                     ];
         }
 //        dd($data);
@@ -62,7 +57,6 @@ class ProsesController extends Controller
         //         $data[$rand[$i]][2],
         //     ];
         // }
-
         for($i=0;$i<$cluster;$i++){
             $temp=[38,11,1];
             while(in_array($rand, [$temp])){
@@ -75,7 +69,7 @@ class ProsesController extends Controller
                 $data[$temp[$i]][2],
             ];
         }
-        // dd($centroid[0]);
+        //  dd($centroid[0]);
       
         $hasil_iterasi=[];
         $hasil_cluster=[];
@@ -110,14 +104,13 @@ class ProsesController extends Controller
         $config = array();
         $config['center'] = '-7.566029, 110.807620';
         $config['zoom'] = '15';
-        $config['cluster'] = TRUE;
-
+        
         app('map')->initialize($config);
 
         // set up the marker ready for positioning
         // // once we know the users location
         $maps = [];
-//        dd(end($hasil_iterasi));
+        //dd(end($hasil_iterasi));
         foreach(end($hasil_iterasi) as $val){
             $maps[] = [
                 'lat' => [
@@ -138,9 +131,9 @@ class ProsesController extends Controller
                     $val['data'][10],
                 ],
                 'name' => $val['data'][11],
-                'speed' => $val['data'][1],
                 'panjang' => $val['data'][0],
                 'lane' => $val['data'][2],
+                'type' => $val['data'][12],
                 'cluster' => $val['jarak_terdekat']['cluster']
             ];
         }
@@ -148,46 +141,60 @@ class ProsesController extends Controller
 
 
 
-
+        // dd($maps);
         foreach($maps as $key_m => $map)
         {
             $polyline = array();
-            $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
-                $map['lat'][0] .','. $map['long'][0],
-                $map['lat'][1] .','. $map['long'][1],
+            if($map['middle_lat'][0] === null || $map['middle_lat'][1] === null ){
+                $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
+                $map['lat'][1] .','. $map['long'][1]
+            ); 
+            }
+            else{
+                $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
+                $map['middle_lat'][0] .','. $map['middle_long'][0],
+                $map['middle_lat'][1] .','. $map['middle_long'][1],
                 $map['lat'][1] .','. $map['long'][1]
             );
+            }
             app('map')->add_polyline($polyline);
 //            $map = app('map')->create_map();
-            
-            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Lajur Jalan : ".$map['lane']."</p></div></div></html>";
+            if($map['cluster'] == 1){
+                $kategori ="Lancar";
+            }elseif($map['cluster'] == 2)
+            {
+                $kategori ="Sedang";
+            }else{
+                $kategori ="Macet"; 
+            }
+            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Lajur Jalan : ".$map['lane']."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
 
             $marker = array();
             $marker['position'] = $map['lat'][0] .','. $map['long'][0];
             $marker['infowindow_content'] = $infowindow;
             if($map['cluster']==1){
-                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'A|FF0000|000000';
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.($key_m+1).'A|ADDE63|000000';
             }elseif($map['cluster']==2){
-                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'A|ADDE63|000000';
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.($key_m+1).'A|FFFF00|000000';
             }else{
-                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.$key_m.'A|FFFF00|000000';
+                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|'.($key_m+1).'A|FF0000|000000';
             }
             app('map')->add_marker($marker);
         }
-        foreach($maps as $key_m => $map)
-        {
-            $marker = array();
-            $marker['position'] = $map['lat'][1] .','. $map['long'][1];
+        //foreach($maps as $key_m => $map)
+        //{
+          //  $marker = array();
+            //$marker['position'] = $map['lat'][1] .','. $map['long'][1];
             //$marker['onclick'] = 'alert("You just clicked me!!")';
-            if($map['cluster']==1){
-                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FF0000|000000';
-            }elseif($map['cluster']==2){
-                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|ADDE63|000000';
-            }else{
-                $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FFFF00|000000';
-            }
-            app('map')->add_marker($marker);
-        }
+            //if($map['cluster']==1){
+              //  $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FF0000|000000';
+            //}elseif($map['cluster']==2){
+              //  $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|ADDE63|000000';
+            //}else{
+              //  $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FFFF00|000000';
+            //}
+            //app('map')->add_marker($marker);
+        //}
 
 
 
@@ -195,24 +202,8 @@ class ProsesController extends Controller
 
         
 
-        return view('proses.index'
-        , compact(
-            'map',
-            'cluster', 'variable_x',
-            'variable_y',
-            'variable_z',
-            'variable_1',
-            'variable_2',
-            'variable_3',
-            'variable_4',
-            'centroid',
-            'data',
-            'value',
-            'value_c',
-            'hasil_iterasi',
-            'name'
-        )
-        );
+        return view('maps.index'
+        , compact('map'));
     }
 
     function jarakEuclidean($data=array(),$centroid=array()){
@@ -284,83 +275,5 @@ class ProsesController extends Controller
 
     function flatten_array($arg) {
         return is_array($arg) ? array_reduce($arg, function ($c, $a) { return array_merge($c, array_flatten($a)); },[]) : [$arg];
-    }
-
-    // function pointingHasilCluster($hasil_cluster){
-    //     $result=[];
-    //     foreach ($hasil_cluster as $key => $value) {
-    //         for ($i=0; $i<count($value[0]);$i++) { 
-    //             $result[$key][]=[$hasil_cluster[$key][0][$i],$hasil_cluster[$key][1][$i],$hasil_cluster[$key][2][$i]];
-    //         }
-    //     }
-    //     dd($hasil_cluster);
-    //     return ksort($result);
-    // }
-  
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

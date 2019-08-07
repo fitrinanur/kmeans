@@ -26,7 +26,9 @@ class RoadController extends Controller
     public function create()
     {
         $types = $this->types();
-        return view('roads.create',compact('types'));
+        $lanes = $this->lanes();
+        $activities = $this->activities();
+        return view('roads.create',compact('types','lanes','activities'));
     }
 
     /**
@@ -37,24 +39,35 @@ class RoadController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $road = new \App\Road();
         $road->name = $request->name;
         $road->speed = $request->speed;
-        $road->activity = $request->activity;
+        if($request->activity == 'Ringan'){
+            $road->activity = 20;
+        }elseif ($request->activity == 'Berat') {
+            $road->activity = 45;
+        }else{
+            $road->activity = 35;
+        }
         $road->long  = $request->long;
         $road->width = $request->width;
         $road->time = $request->time;
         $road->type = $request->type;
         if($request->lane == '1'){
-            $road->lane = 1.37;
+            $road->lane = 1;
         }elseif ($request->lane == '2') {
-            $road->lane = 2.74;
+            $road->lane = 2;
         }else{
-            $road->lane = 4.11;
+            $road->lane = 3;
         }
        
         $road->first_latitude = $request->first_latitude;
         $road->first_longitude = $request->first_longitude;
+        $road->middle_latitude_1 = $request->middle_latitude_1;
+        $road->middle_longitude_1 = $request->middle_longitude_1;
+        $road->middle_latitude_2 = $request->middle_latitude_2;
+        $road->middle_longitude_2 = $request->middle_longitude_2;
         $road->second_latitude = $request->second_latitude;
         $road->second_longitude = $request->second_longitude;
        
@@ -84,7 +97,9 @@ class RoadController extends Controller
     {
         $types = $this->types();
         $road = Road::find($id);
-        return view('roads.edit',compact('types','road'));
+        $lanes = $this->lanes();
+        $activities = $this->activities();
+        return view('roads.edit',compact('road','types','lanes','activities'));
     }
 
     /**
@@ -96,24 +111,35 @@ class RoadController extends Controller
      */
     public function update(Request $request, $id)
     {
+       // dd($request->all());
         $road = Road::findOrFail($id);
         $road->name = $request->name;
         $road->speed = $request->speed;
-        $road->activity = $request->activity;
+        if($request->activity == 'Ringan'){
+            $road->activity = 20;
+        }elseif ($request->activity == 'Berat') {
+            $road->activity = 45;
+        }else{
+            $road->activity = 35;
+        }
         $road->long  = $request->long;
         $road->width = $request->width;
         $road->time = $request->time;
         $road->type = $request->type;
         if($request->lane == '1'){
-            $road->lane = 1.37;
+            $road->lane = 1;
         }elseif ($request->lane == '2') {
-            $road->lane = 2.74;
+            $road->lane = 2;
         }else{
-            $road->lane = 4.11;
+            $road->lane = 3;
         }
        
         $road->first_latitude = $request->first_latitude;
         $road->first_longitude = $request->first_longitude;
+        $road->middle_latitude_1 = $request->middle_latitude_1;
+        $road->middle_longitude_1 = $request->middle_longitude_1;
+        $road->middle_latitude_2 = $request->middle_latitude_2;
+        $road->middle_longitude_2 = $request->middle_longitude_2;
         $road->second_latitude = $request->second_latitude;
         $road->second_longitude = $request->second_longitude;
        
@@ -143,6 +169,23 @@ class RoadController extends Controller
             '1' => '06.00 - 22.00',
             '2' => '24 jam',
             '3' => 'contra flow'
+        ];
+    }
+    private function lanes()
+    {
+        return $lanes = [
+            '1' => '1',
+            '2' => '2',
+            '3' => '3',
+            '4' => '4'
+        ];
+    }
+    private function activities()
+    {
+        return $activities = [
+            '20' => 'Ringan',
+            '45' => 'Berat',
+            '35' => 'Sedang',
         ];
     }
 }

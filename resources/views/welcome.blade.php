@@ -18,11 +18,11 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
-                background-color: #1f6fb2;
-                background: linear-gradient(#1f6fb2, white);
-                background: -webkit-linear-gradient(#1f6fb2, white);
-                background: -o-linear-gradient(#1f6fb2, white);
-                background: -moz-linear-gradient(#1f6fb2, white);
+                background: url({{asset('surakarta-1.jpg')}}) no-repeat fixed;
+                -webkit-background-size: 100% 100%;
+                -moz-background-size: 100% 100%;
+                -o-background-size: 100% 100%;
+                background-size: 100% 100%;
             }
 
             .full-height {
@@ -51,6 +51,10 @@
                 color: #1b1e21;
                 padding: 10px;
                 border-radius: 5px;
+                box-shadow: 2px 3px #888888;
+                width: 900px;
+                min-height: 400px;
+                opacity: 0.9;
 
             }
 
@@ -66,6 +70,8 @@
 
             .presenter {
                 font-family:"Roboto Mono Light for Powerline Std";
+                font-size: 20px;
+                color:black;
             }
 
             .m-b-md {
@@ -78,9 +84,10 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a style="color:white;background-color:blue;border-radius:4px;padding:4px;" href="{{ url('/home') }}">Home</a>
                     @else
                         <a style="color: white" href="{{ route('login') }}">Login</a>
+                        <a style="color: white" href= "{{ route('maps.index')}}">Maps</a>
 
                         {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a> --}}
@@ -99,14 +106,15 @@
                                         <img src="{{asset('sinus.png')}}" alt="" style="width: 150px;height: 150px">
                                     </div>
                                     <div class="title">
-                                        <h3>"SISTEM PEMETAAN XXXX DENGAN ALGORITMA <i>K-Means Clustering</i> "</h3>
+                                        <h3>PEMETAAN SISTEM SATU ARAH BERDASARKAN TINGKAT KESIBUKAN JALAN KOTA SURAKARTA DENGAN METODE <br/><i>K-Means Clustering</i></h3>
                                     </div>
                                     <hr/>
                                     <div class="presenter">
                                         <p>Wahyu Utomo <br>
-                                            13.5.000xx <br>
-                                            STMIK SINAR NUSANTARA <br>
-                                            Surakarta
+                                            13.5.00087
+                                             <br><br>
+                                            <strong>STMIK SINAR NUSANTARA </strong><br>
+                                            <strong>Surakarta<strong>
                                         </p>
                                     </div>
                                 </div>

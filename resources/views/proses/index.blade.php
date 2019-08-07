@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
 <head>
 
-</head> 
+</head>
 <div class="row justify-content-md-center">
     <h1>Klasterisasi Menggunakan K-means</h1>
 </div>
@@ -11,138 +12,194 @@
 
 <div class="card-body">
     <div class="tab-content" id="lodgingTabContent">
-        <div class="tab-pane fade show active" id="inisialisasi" role="tabpanel" aria-labelledby="general-tab">
-            <h3>Inisialisasi Awal</h3>
-            <hr>
-            <div class="row">
-                <div class="col-lg-7">
-                    <table class="table table-bordered table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th rowspan="1">Centroid</th>
-                                <th rowspan="1"><?php echo $variable_x; ?></th>
-                                <th rowspan="1"><?php echo $variable_y; ?></th>
-                                <th rowspan="1"><?php echo $variable_z; ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($centroid[0] as $key_c => $value_c)
-                            <tr>
-                                <td>{{ ($key_c+1)  }}</td>
-                                <td>{{ $value_c[0] }}</td>
-                                <td>{{ $value_c[1] }}</td>
-                                <td>{{ $value_c[2] }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-lg-5">
-                    <table class="table table-bordered table-sm table-striped">
-                        <thead>
-                            <tr>
-                                <th rowspan="1">Data ke-i</th>
-                                <th rowspan="1">{{ $variable_x }}</th>
-                                <th rowspan="1">{{ $variable_y }}</th>
-                                <th rowspan="1">{{ $variable_z }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $key_c => $value_c)
-                            <tr>
-                                <td>{{  ($key_c+1) }}</td>
-                                <td>{{ $value_c[0] }}</td>
-                                <td>{{ $value_c[1] }}</td>
-                                <td>{{ $value_c[2] }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
-        </div>
-        {{-- End inisialisasi --}}
-        @foreach($hasil_iterasi as $key => $value)
-            <h3>Iterasi ke {{ ($key+1)}}</h3>
-            <hr>
-            <div class="row">
-                    <div class="col-lg-5">
-                        <table class="table table-bordered table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th rowspan="1" class="text-center">Centroid</th>
-                                    <th rowspan="1" class="text-center">{{ $variable_x }}</th>
-                                    <th rowspan="1" class="text-center">{{ $variable_y }}</th>
-                                    <th rowspan="1" class="text-center">{{ $variable_z }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($centroid[$key] as $key_c => $value_c)
-                                <tr>
-                                    <td class="text-center">{{ ($key_c+1) }}</td>
-                                    <td class="text-center">{{ $value_c[0] }}</td>
-                                    <td class="text-center">{{ $value_c[1] }}</td>
-                                    <td class="text-center">{{ $value_c[2] }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+        <div class="card-body">
+            <div class="tab-content" id="lodgingTabContent">
+                <div class="accordion" id="accordionExample">
+                    {{--<div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#maps"
+                                    aria-expanded="true" aria-controls="collapseMaps">
+                                    MAP
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="maps" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="keterangan">
+                                    <p>Keterangan</p>
+                                    <div class="1"
+                                        style="border-style: solid;border-width:1px;border-color:black;padding:10px">
+                                        <img src="https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|Lancar|FF0000|000000"
+                                            alt="">
+                                        <img src="https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|Sibuk|ADDE63|000000"
+                                            alt="">
+                                        <img src="https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|Macet|FFFF00|000000"
+                                            alt="">
+                                    </div>
+                                </div>
+                                <div class="maps" style="height:190%;">
+                                    {!! $map['html'] !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#inisialisasi" aria-expanded="true" aria-controls="collapseOne">
+                                    Inisialisasi
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="inisialisasi" class="collapse" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <table class="table table-bordered table-striped table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="1">Centroid</th>
+                                                    <th rowspan="1"><?php echo $variable_x; ?></th>
+                                                    <th rowspan="1"><?php echo $variable_y; ?></th>
+                                                    <th rowspan="1"><?php echo $variable_z; ?></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($centroid[0] as $key_c => $value_c)
+                                                <tr>
+                                                    <td>{{ ($key_c+1)  }}</td>
+                                                    <td>{{ $value_c[0] }}</td>
+                                                    <td>{{ $value_c[1] }}</td>
+                                                    <td>{{ $value_c[2] }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <table class="table table-bordered table-sm table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="1">Data ke-i</th>
+                                                    <th rowspan="1">{{ $variable_x }}</th>
+                                                    <th rowspan="1">{{ $variable_y }}</th>
+                                                    <th rowspan="1">{{ $variable_z }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data as $key_c => $value_c)
+                                                <tr>
+                                                    <td>{{  ($key_c+1) }}</td>
+                                                    <td>{{ $value_c[0] }}</td>
+                                                    <td>{{ $value_c[1] }}</td>
+                                                    <td>{{ $value_c[2] }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table table-bordered table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th rowspan="2" class="text-center">Data ke i</th>
-                                <th rowspan="2" class="text-center">Nama</th>
-                                <th rowspan="2" class="text-center">{{ $variable_x }}</th>
-                                <th rowspan="2" class="text-center">{{ $variable_y }}</th>
-                                <th rowspan="2" class="text-center">{{ $variable_z }}</th>
-                                <th rowspan="1" class="text-center" colspan="{{ $cluster }} ">Jarak
-                                    ke centroid</th>
-                                <th rowspan="2" class="text-center">Jarak terdekat</th>
-                                <th rowspan="2" class="text-center">Cluster</th>
-                            </tr>
-                            <tr>
+                    @foreach ($hasil_iterasi as $key => $value)
+                    <div class="card">
+                        <div class="card-header" id="heading{{$key}}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapse{{$key}}" aria-expanded="false" aria-controls="collapseTwo">
+                                    Iterasi {{$key+1}}
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapse{{$key}}" class="collapse" aria-labelledby="heading{{$key}}"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <h3>Iterasi ke {{ ($key+1)}}</h3>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <table class="table table-bordered table-striped table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="1" class="text-center">Centroid</th>
+                                                    <th rowspan="1" class="text-center">{{ $variable_x }}</th>
+                                                    <th rowspan="1" class="text-center">{{ $variable_y }}</th>
+                                                    <th rowspan="1" class="text-center">{{ $variable_z }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($centroid[$key] as $key_c => $value_c)
+                                                <tr>
+                                                    <td class="text-center">{{ ($key_c+1) }}</td>
+                                                    <td class="text-center">{{ $value_c[0] }}</td>
+                                                    <td class="text-center">{{ $value_c[1] }}</td>
+                                                    <td class="text-center">{{ $value_c[2] }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <table class="table table-bordered table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2" class="text-center">Data ke i</th>
+                                                <th rowspan="2" class="text-center">Nama</th>
+                                                <th rowspan="2" class="text-center">{{ $variable_x }}</th>
+                                                <th rowspan="2" class="text-center">{{ $variable_y }}</th>
+                                                <th rowspan="2" class="text-center">{{ $variable_z }}</th>
+                                                <th rowspan="1" class="text-center" colspan="{{ $cluster }} ">Jarak
+                                                    ke centroid</th>
+                                                <th rowspan="2" class="text-center">Jarak terdekat</th>
+                                                <th rowspan="2" class="text-center">Cluster</th>
+                                            </tr>
+                                            <tr>
 
-                                @for ($i=1; $i <=$cluster ; $i++) <th rowspan="1" class="text-center">{{ $i }}</th>
-                                    @endfor
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($value as $key_data => $value_data)
-                            <tr>
-                                <td class="text-center">{{ $key_data+1 }} </td>
-                                <td class="text-center">{{ $name[$key_data] }}</td>
-                                <td class="text-center">{{ $value_data['data'][0] }}</td>
-                                <td class="text-center">{{ $value_data['data'][1] }}</td>
-                                <td class="text-center">{{ $value_data['data'][2] }}</td>
-                                @foreach ($value_data['jarak_ke_centroid'] as $key_jc => $value_jc)
-                                <td class="text-center">{{ $value_jc }}</td>
-                                @endforeach
+                                                @for ($i=1; $i <=$cluster ; $i++) <th rowspan="1" class="text-center">
+                                                    {{ $i }}
+                                                    </th>
+                                                    @endfor
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($value as $key_data => $value_data)
+                                            <tr>
+                                                <td class="text-center">{{ $key_data+1 }} </td>
+                                                <td class="text-center">{{ $name[$key_data] }}</td>
+                                                <td class="text-center">{{ $value_data['data'][0] }}</td>
+                                                <td class="text-center">{{ $value_data['data'][1] }}</td>
+                                                <td class="text-center">{{ $value_data['data'][2] }}</td>
+                                                @foreach ($value_data['jarak_ke_centroid'] as $key_jc => $value_jc)
+                                                <td class="text-center">{{ $value_jc }}</td>
+                                                @endforeach
 
-                                <td class="text-center">
-                                    {{ $value_data['jarak_terdekat']['value'] }}</td>
-                                <td class="text-center">
-                                    {{ $value_data['jarak_terdekat']['cluster'] }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                                <td class="text-center">
+                                                    {{ $value_data['jarak_terdekat']['value'] }}</td>
+                                                <td class="text-center">
+                                                    {{ $value_data['jarak_terdekat']['cluster'] }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-        @endforeach
-        <div class="maps" style="height:190%;">
-            {!!  $map['html']   !!}
-        </div>
-        
+    </div>
 </div>
-{{-- <div class="row justify-content-md-center">
-            <div id="chartContainer" style="min-width: 810px; height: 600px; max-width: 900px; margin: 0 auto"></div>
-        </div> --}}
-</div>
+
 <script type="text/javascript">
     var centreGot = false;
+
 </script>{!! $map['js'] !!}
 <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" src="https://code.highcharts.com/highcharts-more.js"></script>

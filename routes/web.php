@@ -43,9 +43,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('user', 'UserController');
-Route::resource('road', 'RoadController');
-Route::get('/proses', 'ProsesController@index')->name('proses.index');
+Route::group(['middleware' => ['web', 'auth']], function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('user', 'UserController');
+    Route::resource('road', 'RoadController');
+    Route::get('/proses', 'ProsesController@index')->name('proses.index');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/maps', 'MapsController@index')->name('maps.index');
+
+//Route::get('/home', 'HomeController@index')->name('home');
