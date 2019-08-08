@@ -8,6 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Acme|Montserrat:800|Source+Sans+Pro:400,700&display=swap"
+        rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -73,10 +75,6 @@
                 font-size: 20px;
                 color:black;
             }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
@@ -84,14 +82,10 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a style="color:white;background-color:blue;border-radius:4px;padding:4px;" href="{{ url('/home') }}">Home</a>
+                        <a style="color:white;background-color:#3F1871;border-radius:4px;padding:10px;font-family:'Source Sans-Pro;" href="{{ url('/home') }}">Home</a>
                     @else
                         <a style="color: white" href="{{ route('login') }}">Login</a>
                         <a style="color: white" href= "{{ route('maps.index')}}">Maps</a>
-
-                        {{-- @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a> --}}
-                        {{-- @endif --}}
                     @endauth
                 </div>
             @endif
