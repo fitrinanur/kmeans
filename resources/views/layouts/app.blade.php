@@ -131,7 +131,7 @@
                         <div class="col-md-6">
                             <nav class="top-nav">
                                 <div class="top-title-nav">
-                                    <a href="http://www.perhubungan.jatengprov.go.id/webmail"
+                                    <a href="http://dishub.surakarta.go.id"
                                         target="_blank">Webmail</a>
                                 </div>
                             </nav>
@@ -141,16 +141,16 @@
                             <div class="top-right">
                                 <div class="header-info">
                                     <ul class="header-social">
-                                        <li><a href="https://www.facebook.com/perhubunganjtg/" title="facebook"
+                                        <li><a href="https://facebook.com/pages/category/Government-Organization/DINAS-PERHUBUNGAN-KOTA-SURAKARTA-229744893730893/" title="facebook"
                                                 target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                         </li>
-                                        <li><a href="https://twitter.com/perhubunganjtg" title="Twitter"
+                                        <li><a href="https://twitter.com/dishubsurakarta?lang=en" title="Twitter"
                                                 target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                         </li>
-                                        <li><a href="https://www.instagram.com/dinhub.jateng/" title="Instagram"
+                                        <li><a href="https://instagram.com/dishubsurakarta?igshid=frexnoi3er7n" title="Instagram"
                                                 target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                                         </li>
-                                        <li><a href="https://www.youtube.com/channel/UCe4WuIvGOGGfjhfCZ3jYX_Q"
+                                        <li><a href="https://www.youtube.com/user/MrDishub"
                                                 title="Youtube" target="_blank"><i class="fa fa-youtube"
                                                     aria-hidden="true"></i></a></li>
                                     </ul>
@@ -244,7 +244,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="copyright">
-                            <p>Copyright © 2017 Dinas Perhubungan Provinsi Jawa Tengah</p>
+                            <p>Copyright © 2017 Dinas Perhubungan Surakarta</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -257,7 +257,7 @@
                                 <div class="col-lg-8 phone_number" >
                                     <p>
                                         <i class="fa fa-whatsapp" aria-hidden="true"></i> &nbsp;
-                                         <a href="https://wa.me/628112790123">0811-279-0123</a> 
+                                         <a href="https://wa.me/628112654322">0811-265-4322</a> 
                                     </p>      
                                 </div>
                             </div>
