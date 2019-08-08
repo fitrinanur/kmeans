@@ -200,11 +200,5 @@
 <script type="text/javascript">
     var centreGot = false;
 
-</script>{!! $map['js'] !!}
-<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="{{ asset('js/app.js') }}" defer></script>
-{{-- <script src="https://maps.googleapis.com/maps/api/js"></script> --}}
-
-
+</script>
 @endsection
