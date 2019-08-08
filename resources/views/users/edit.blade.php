@@ -11,7 +11,7 @@
             letter-spacing: .1rem;
             text-decoration: none;
             text-transform: uppercase;">
-                <h3>Form Data Jalan</h3>
+                <h3>Edit Data User</h3>
             </div>
             <div class="card-body" style="padding:30px">
                 <form action="{{ route('user.update', $user) }}" method="POST">
@@ -32,16 +32,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Password</label>
-                            <input type="password" class="form-control" id="inputEmail4" name="password" placeholder="0.28 m"
-                        value="{{ $user->password }}">
+                            <input type="text" class="form-control" id="inputEmail4" name="password">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Confirm Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" name="confirm_password"
-                            value="{{ $user->password }}">
+                            <input type="text" class="form-control" id="inputPassword4" name="confirm_password">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Kirim</button>
+                    <a class="btn btn-dark" style="float:right" href="{{ route('user.index')}}" >Cancel</a>
                 </form>
             </div>
         </div>

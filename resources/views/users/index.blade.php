@@ -36,8 +36,9 @@
                             <a class="btn btn-warning btn-sm" href="{{ route('user.edit',$user->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')
-                
+                            @if(auth()->user()->name != 'Admin')
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            @endif
                         </form>
                     </td>
                 </tr>

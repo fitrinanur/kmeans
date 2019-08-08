@@ -40,7 +40,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         if($request->password == $request->confirm_password){
-            $user->password = $request->password; 
+            $user->password = bycript($request->password); 
         }
         $user->save();
 
@@ -82,9 +82,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        if($request->password == $request->confirm_password){
-            $user->password = $request->password; 
+        if($request->password){
+            if($request->password == $request->confirm_password){
+                $user->password = bycript($request->password); 
+            }
         }
+      
         $user->update();
 
         return redirect()->route('user.index');
