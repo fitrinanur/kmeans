@@ -18,44 +18,44 @@
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <img src="{{ asset('lalin.jpg') }}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>First slide label</h5>
-                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    <div class="carousel-caption d-none d-md-block" style="background-color:#888888;opacity:0.8;">
+                                        <h5>Pelayanan Perbaikan</h5>
+                                        <p>Perbaikan Traffic Light oleh Dinas Perhubungan</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img src="{{ asset('lalin0.jpg') }}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Second slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <div class="carousel-caption d-none d-md-block" style="background-color:#888888;opacity:0.8;">
+                                        <h5>Rekayasa Lalu Lintas</h5>
+                                        <p>Pengaturan Lalu Lintas Kota Surakarta untuk Kenyamanan Masyarakat</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img src="{{ asset('lalin2.jpg') }}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Third slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <div class="carousel-caption d-none d-md-block" style="background-color:#888888;opacity:0.8;">
+                                        <h5>Rekayasa Lalu Lintas</h5>
+                                        <p>Pengaturan Lalu Lintas Kota Surakarta untuk Kenyamanan Masyarakat</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img src="{{ asset('ujiemisi.jpg') }}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Fourth slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <div class="carousel-caption d-none d-md-block" style="background-color:#888888;opacity:0.8;">
+                                        <h5>Uji Emisi Kendaraan</h5>
+                                        <p>Uji Emisi Kendaraan Sebagai Standart Kelayakan dalam Berkendara</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img src="{{ asset('mudik1.jpg') }}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Fifth slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <div class="carousel-caption d-none d-md-block" style="background-color:#888888;opacity:0.8;">
+                                        <h5>Apel Bersama</h5>
+                                        <p>Apel Bersama Menyukseskan Program Pelayanan Mudik 2019</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img src="{{ asset('mudik2.jpg') }}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>six slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <div class="carousel-caption d-none d-md-block" style="background-color:#888888;opacity:0.8;">
+                                        <h5>Pelayanan Mudik</h5>
+                                        <p>Program Layanan Mudik untuk Masyarakat 2019</p>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="card-body">
                         <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas tenetur dignissimos illo. Facere sint officia perspiciatis debitis maiores quos similique, quam explicabo soluta adipisci eius, veritatis optio facilis dolore accusamus sit sequi tempore ipsam eos deleniti distinctio pariatur! Iusto non harum quia, fugit veniam quisquam amet voluptas quos adipisci! Cum eaque odit vero nemo doloribus dolorem a ut modi molestiae, laudantium libero praesentium alias voluptas optio corporis perferendis nulla quam fuga atque repudiandae? Repellat tempora ad deserunt enim sit delectus nostrum maiores architecto natus ab atque, nihil perspiciatis adipisci possimus repellendus, reiciendis est rerum voluptatibus ipsum corrupti. Voluptates sed a et repudiandae placeat cum voluptatum tempore cupiditate eligendi nulla, necessitatibus ipsam eaque tempora labore natus nesciunt minus laudantium, qui deserunt! Possimus porro necessitatibus ab cumque, dolorum provident est cum. Adipisci laudantium odio voluptatem, ad, minus nulla, possimus nostrum recusandae natus enim error minima quaerat illum quasi corporis nam nesciunt non!
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos dolorem facere sapiente dolorum! Minus minima nam pariatur, rem deleniti laborum suscipit nesciunt aperiam voluptates saepe numquam natus quidem dignissimos obcaecati fuga sapiente ut necessitatibus ipsa quis itaque impedit veritatis molestiae fugit cumque? Perspiciatis tempora voluptatum deleniti aspernatur ipsam id mollitia? Nihil molestias dolor pariatur saepe incidunt quod inventore voluptas doloribus. Eligendi quaerat reiciendis ipsa quisquam nisi iure nam amet accusantium, velit ab magni quos nemo esse blanditiis necessitatibus harum voluptates nobis. Libero dolorem iure vero. Recusandae unde fugit aliquam neque minus, porro dolores quas quibusdam quae quis similique placeat sit pariatur, explicabo modi possimus quia magni iusto praesentium numquam adipisci. Obcaecati ipsam esse sint vitae aspernatur at expedita, officiis totam.
                         </p>
                     </div>
                 </div>
