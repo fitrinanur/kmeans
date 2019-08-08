@@ -244,7 +244,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="copyright">
-                            <p>Copyright © 2017 Dinas Perhubungan Surakarta</p>
+                            <p>Copyright © 2019 Dinas Perhubungan Surakarta</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
