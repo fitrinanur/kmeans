@@ -141,21 +141,32 @@ class MapsController extends Controller
 
 
 
+
         // dd($maps);
         foreach($maps as $key_m => $map)
         {
             $polyline = array();
-            if($map['middle_lat'][0] === null || $map['middle_lat'][1] === null ){
+            // elseif
+            if($map['middle_lat'][0] != null && $map['middle_lat'][1] === null){
                 $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
+                $map['middle_lat'][0] .','. $map['middle_long'][0],
                 $map['lat'][1] .','. $map['long'][1]
-            ); 
-            }
-            else{
+                ); 
+            }elseif($map['middle_lat'][1] != null && $map['middle_lat'][0] === null ){
+                    $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
+                    $map['middle_lat'][1] .','. $map['middle_long'][1],
+                    $map['lat'][1] .','. $map['long'][1]
+                    ); 
+            }elseif($map['middle_lat'][0] === null || $map['middle_lat'][1] === null ){
+                    $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
+                    $map['lat'][1] .','. $map['long'][1]
+                    ); 
+            }else{
                 $polyline['points'] = array($map['lat'][0] .','. $map['long'][0],
                 $map['middle_lat'][0] .','. $map['middle_long'][0],
                 $map['middle_lat'][1] .','. $map['middle_long'][1],
                 $map['lat'][1] .','. $map['long'][1]
-            );
+                );
             }
             app('map')->add_polyline($polyline);
 //            $map = app('map')->create_map();
@@ -181,22 +192,20 @@ class MapsController extends Controller
             }
             app('map')->add_marker($marker);
         }
-        //foreach($maps as $key_m => $map)
-        //{
-          //  $marker = array();
-            //$marker['position'] = $map['lat'][1] .','. $map['long'][1];
-            //$marker['onclick'] = 'alert("You just clicked me!!")';
-            //if($map['cluster']==1){
-              //  $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FF0000|000000';
-            //}elseif($map['cluster']==2){
-              //  $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|ADDE63|000000';
-            //}else{
-              //  $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.$key_m.'B|FFFF00|000000';
-            //}
-            //app('map')->add_marker($marker);
-        //}
-
-
+        // foreach($maps as $key_m => $map)
+        // {
+        //    $marker = array();
+        //     $marker['position'] = $map['lat'][1] .','. $map['long'][1];
+        //     $marker['onclick'] = 'alert("You just clicked me!!")';
+        //     if($map['cluster']==1){
+        //        $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.($key_m+1).'B|FF0000|000000';
+        //     }elseif($map['cluster']==2){
+        //        $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.($key_m+1).'B|ADDE63|000000';
+        //     }else{
+        //        $marker['icon'] = 'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_todo|bb|'.($key_m+1).'B|FFFF00|000000';
+        //     }
+        //     app('map')->add_marker($marker);
+        // }
 
         $map = app('map')->create_map();
 

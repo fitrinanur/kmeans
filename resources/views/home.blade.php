@@ -80,7 +80,7 @@
                     </div>
                     <div class="card-body">
                         <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos dolorem facere sapiente dolorum! Minus minima nam pariatur, rem deleniti laborum suscipit nesciunt aperiam voluptates saepe numquam natus quidem dignissimos obcaecati fuga sapiente ut necessitatibus ipsa quis itaque impedit veritatis molestiae fugit cumque? Perspiciatis tempora voluptatum deleniti aspernatur ipsam id mollitia? Nihil molestias dolor pariatur saepe incidunt quod inventore voluptas doloribus. Eligendi quaerat reiciendis ipsa quisquam nisi iure nam amet accusantium, velit ab magni quos nemo esse blanditiis necessitatibus harum voluptates nobis. Libero dolorem iure vero. Recusandae unde fugit aliquam neque minus, porro dolores quas quibusdam quae quis similique placeat sit pariatur, explicabo modi possimus quia magni iusto praesentium numquam adipisci. Obcaecati ipsam esse sint vitae aspernatur at expedita, officiis totam.
+                            <img src="{{asset('sinus.png')}}" alt="" style="width: 150px;height: 150px; margin-left: 160px;">
                         </p>
                     </div>
                 </div>
