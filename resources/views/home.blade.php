@@ -82,6 +82,13 @@
                         <p>
                             <img src="{{asset('sinus.png')}}" alt="" style="width: 150px;height: 150px; margin-left: 160px;">
                         </p>
+                        <p>Panduan Penggunaan Aplikasi
+                            <ol>
+                                <li> Insert data jalan pada menu data master -> data jalan </li>
+                                <li> Pilih menu proses untuk melihat perhitungan</li>
+                                <li> Pilih menu maps untuk menampilkan maps</li>
+                            </ol>
+                        </p>
                     </div>
                 </div>
             </div>
