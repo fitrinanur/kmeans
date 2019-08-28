@@ -216,7 +216,7 @@ class ProsesController extends Controller
     }
 
     function jarakEuclidean($data=array(),$centroid=array()){
-            $jarak = sqrt(pow(($data[0]-$centroid[0]),2) + pow(($data[1]-$centroid[1]),2) + pow(($data[1]-$centroid[2]),2));
+            $jarak = sqrt(pow(($data[0]-$centroid[0]),2) + pow(($data[1]-$centroid[1]),2) + pow(($data[2]-$centroid[2]),2));
             return  $jarak;
     }
 
