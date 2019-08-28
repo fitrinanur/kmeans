@@ -28,7 +28,7 @@ class MapsController extends Controller
                         $row['second_latitude'],$row['second_longitude'],
                         $row['middle_latitude_1'],$row['middle_longitude_1'],
                         $row['middle_latitude_2'],$row['middle_longitude_2'],
-                        $row['name'], $row['type'],
+                        $row['name'], $row['type'], $row['speed']
                     ];
         }
 //        dd($data);
@@ -110,7 +110,6 @@ class MapsController extends Controller
         // set up the marker ready for positioning
         // // once we know the users location
         $maps = [];
-        //dd(end($hasil_iterasi));
         foreach(end($hasil_iterasi) as $val){
             $maps[] = [
                 'lat' => [
@@ -134,13 +133,10 @@ class MapsController extends Controller
                 'panjang' => $val['data'][0],
                 'lane' => $val['data'][2],
                 'type' => $val['data'][12],
-                'cluster' => $val['jarak_terdekat']['cluster']
+                'cluster' => $val['jarak_terdekat']['cluster'],
+                'speed' => $val['data'][13]
             ];
         }
-
-
-
-
 
         // dd($maps);
         foreach($maps as $key_m => $map)
@@ -169,7 +165,7 @@ class MapsController extends Controller
                 );
             }
             app('map')->add_polyline($polyline);
-//            $map = app('map')->create_map();
+
             if($map['cluster'] == 1){
                 $kategori ="Lancar";
             }elseif($map['cluster'] == 2)
@@ -178,7 +174,7 @@ class MapsController extends Controller
             }else{
                 $kategori ="Macet"; 
             }
-            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Lajur Jalan : ".$map['lane']."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
+            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Kecepatan : ".$map['speed']."</p><p>Lajur Jalan : ".$map['lane']."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
 
             $marker = array();
             $marker['position'] = $map['lat'][0] .','. $map['long'][0];
@@ -216,7 +212,7 @@ class MapsController extends Controller
     }
 
     function jarakEuclidean($data=array(),$centroid=array()){
-            $jarak = sqrt(pow(($data[0]-$centroid[0]),2) + pow(($data[1]-$centroid[1]),2) + pow(($data[1]-$centroid[2]),2));
+            $jarak = sqrt(pow(($data[0]-$centroid[0]),2) + pow(($data[1]-$centroid[1]),2) + pow(($data[2]-$centroid[2]),2));
             return  $jarak;
     }
 
@@ -247,8 +243,9 @@ class MapsController extends Controller
         foreach ($table_iterasi as $key => $value) {
             $hasil_cluster[($value['jarak_terdekat']['cluster']-1)][0][]= $value['data'][0];//data x
             $hasil_cluster[($value['jarak_terdekat']['cluster']-1)][1][]= $value['data'][1];//data y
-            $hasil_cluster[($value['jarak_terdekat']['cluster']-1)][2][]= $value['data'][2];//data y
+            $hasil_cluster[($value['jarak_terdekat']['cluster']-1)][2][]= $value['data'][2];//data z
         }
+        // dd($table_iterasi);
         // dd($hasil_cluster);
         $new_centroid=[];
         //looping untuk mencari nilai centroid baru dengan cara mencari rata2 dari masing2 data(0=x dan 1=y dan 2=z) 
