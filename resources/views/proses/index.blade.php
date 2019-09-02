@@ -16,36 +16,6 @@
         <div class="card-body">
             <div class="tab-content" id="lodgingTabContent">
                 <div class="accordion" id="accordionExample">
-                    {{--<div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#maps"
-                                    aria-expanded="true" aria-controls="collapseMaps">
-                                    MAP
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="maps" class="collapse show" aria-labelledby="headingOne"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="keterangan">
-                                    <p>Keterangan</p>
-                                    <div class="1"
-                                        style="border-style: solid;border-width:1px;border-color:black;padding:10px">
-                                        <img src="https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|Lancar|FF0000|000000"
-                                            alt="">
-                                        <img src="https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|Sibuk|ADDE63|000000"
-                                            alt="">
-                                        <img src="https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=glyphish_map-marker|bb|Macet|FFFF00|000000"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="maps" style="height:190%;">
-                                    {!! $map['html'] !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">

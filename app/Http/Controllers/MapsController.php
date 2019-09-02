@@ -208,7 +208,7 @@ class MapsController extends Controller
         
 
         return view('maps.index'
-        , compact('map'));
+        , compact('map','maps'));
     }
 
     function jarakEuclidean($data=array(),$centroid=array()){
