@@ -64,7 +64,7 @@ class ProsesController extends Controller
         // }
 
         for($i=0;$i<$cluster;$i++){
-            $temp=[0,14,37];
+            $temp=[37,14,0];
             while(in_array($rand, [$temp])){
                 $temp=rand(0,(count($data)-1));
             }
