@@ -23,12 +23,12 @@ class MapsController extends Controller
         $data = [];
         foreach($roads as $row){
             $data[]=[
-                        $row['long'],$row['activity'],$row['lane'],
+                        $row['speed'],$row['activity'],$row['lane'],
                         $row['first_latitude'],$row['first_longitude'],
                         $row['second_latitude'],$row['second_longitude'],
                         $row['middle_latitude_1'],$row['middle_longitude_1'],
                         $row['middle_latitude_2'],$row['middle_longitude_2'],
-                        $row['name'], $row['type'], $row['speed']
+                        $row['name'],$row['type'],$row['long']
                     ];
         }
 //        dd($data);
@@ -57,6 +57,7 @@ class MapsController extends Controller
         //         $data[$rand[$i]][2],
         //     ];
         // }
+
         for($i=0;$i<$cluster;$i++){
             $temp=[37,13,1];
             while(in_array($rand, [$temp])){
@@ -69,7 +70,7 @@ class MapsController extends Controller
                 $data[$temp[$i]][2],
             ];
         }
-        //  dd($centroid[0]);
+        // dd($centroid[0]);
       
         $hasil_iterasi=[];
         $hasil_cluster=[];
@@ -104,7 +105,8 @@ class MapsController extends Controller
         $config = array();
         $config['center'] = '-7.566029, 110.807620';
         $config['zoom'] = '15';
-        
+        //$config['cluster'] = TRUE;
+
         app('map')->initialize($config);
 
         // set up the marker ready for positioning
@@ -130,11 +132,11 @@ class MapsController extends Controller
                     $val['data'][10],
                 ],
                 'name' => $val['data'][11],
-                'panjang' => $val['data'][0],
+                'panjang' => $val['data'][13],
                 'lane' => $val['data'][2],
                 'type' => $val['data'][12],
                 'cluster' => $val['jarak_terdekat']['cluster'],
-                'speed' => $val['data'][13]
+                'speed' => $val['data'][0]
             ];
         }
 
@@ -174,7 +176,7 @@ class MapsController extends Controller
             }else{
                 $kategori ="Macet"; 
             }
-            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']."</p><p>Kecepatan : ".$map['speed']."</p><p>Lajur Jalan : ".$map['lane']."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
+            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']." km </p><p>Kecepatan : ".$map['speed']."</p><p>Lajur Jalan : ".$map['lane']."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
 
             $marker = array();
             $marker['position'] = $map['lat'][0] .','. $map['long'][0];
