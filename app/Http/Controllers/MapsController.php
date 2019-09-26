@@ -176,7 +176,15 @@ class MapsController extends Controller
             }else{
                 $kategori ="Macet"; 
             }
-            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']." km </p><p>Kecepatan : ".$map['speed']."</p><p>Lajur Jalan : ".$map['lane']."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
+
+            if($map['lane'] == '20'){
+                $lane = '1 Lajur';
+            }elseif($map['lane'] == '40'){
+                $lane = '2 Lajur';
+            }else{
+                $lane = '3 Lajur';
+            }
+            $infowindow ="<html><div class='card'><div class='card-header'><h4>Informasi Jalan</h4></div><div class='card-body'><p>Nama Jalan : ".$map['name']."</p><p>Panjang Jalan : ".$map['panjang']." km </p><p>Kecepatan : ".$map['speed']."</p><p>Lajur Jalan : ".$lane."</p><p>Tipe : ".$map['type']."<p>Kategori : ".$kategori."</div></div></html>";
 
             $marker = array();
             $marker['position'] = $map['lat'][0] .','. $map['long'][0];
